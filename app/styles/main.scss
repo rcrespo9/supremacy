@@ -156,16 +156,16 @@ img {
     margin-top: -(modular-scale(2) / 2);
     border-radius: 50%;
     background-color: $white;
+    transition: left $ease-duration;
   }
 }
 
 .toggle__checkbox:checked + .toggle__label {
-  background-color: $white;
+  background-color: red;
 }
 
 .toggle__checkbox:checked + .toggle__label:after {
-  left: auto;
-  right: modular-scale(-3);
+  left: modular-scale(6) - rem(30px) - modular-scale(-3);
   background-color: $black;
 }
 

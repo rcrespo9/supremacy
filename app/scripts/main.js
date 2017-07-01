@@ -29,7 +29,7 @@
 
 	function init() {
 		const newThemeToggle = themeToggle();
-		newThemeToggle.init();
+		// newThemeToggle.init();
 	}
 
 	function ready(fn) {
