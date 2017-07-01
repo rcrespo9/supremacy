@@ -1,9 +1,128 @@
 // bower:scss
+@import "bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";
 // endbower
 
-.browserupgrade {
-  margin: 0.2em 0;
-  background: #ccc;
-  color: #000;
-  padding: 0.2em 0;
+/*------------------------------------*\
+  #FUNCTIONS
+\*------------------------------------*/
+
+@function rem($pixels, $context: $baseFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}
+
+
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+// typography
+$baseFontSize: 16;
+
+$modular-scale-base: rem($em-base);
+
+// colors
+$white: #fff;
+
+$black: #000;
+
+/*------------------------------------*\
+  #MIXINS
+\*------------------------------------*/
+
+@mixin row() {
+  display: flex;
+  flex-flow: row wrap;
+  margin: -1em 0 1em -1em;
+}
+
+@mixin column($width, $fit: false) {
+  flex: 0 0 $width;
+  padding: 1rem 0 0 1rem;
+
+  @if $fit {
+    flex: 1;
+  } else {
+    flex: 0 0 $width;
+  }
+}
+
+/*------------------------------------*\
+  #BASE STYLES
+\*------------------------------------*/
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 1rem;
+}
+
+body {
+  background-color: $white;
+  color: $black;
+  font-family: 'futura-pt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+svg,
+img {
+  width: 100%;
+  height: auto;
+}
+
+/*------------------------------------*\
+  #PAGE WRAPPER
+\*------------------------------------*/
+
+.page-content {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+/*------------------------------------*\
+  #THEMES
+\*------------------------------------*/
+
+.dark {
+  background-color: $black;
+  color: $white;
+}
+
+/*------------------------------------*\
+  #MESSAGE
+\*------------------------------------*/
+
+.message {
+  font-size: modular-scale(6);
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.message__emphasis {
+  color: $white;
 }
