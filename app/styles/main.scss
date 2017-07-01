@@ -33,6 +33,9 @@ $white: #fff;
 
 $black: #000;
 
+// animations
+$ease-duration: .3s ease-in-out;
+
 /*------------------------------------*\
   #MIXINS
 \*------------------------------------*/
@@ -75,6 +78,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  transition: all $ease-duration;
 }
 
 audio,
@@ -93,7 +97,18 @@ img {
 }
 
 /*------------------------------------*\
-  #PAGE WRAPPER
+  #PAGE HEADER
+\*------------------------------------*/
+
+.page-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+/*------------------------------------*\
+  #PAGE CONTENT
 \*------------------------------------*/
 
 .page-content {
@@ -113,6 +128,48 @@ img {
 }
 
 /*------------------------------------*\
+  #TOGGLE
+\*------------------------------------*/
+
+.toggle__checkbox {
+  display: none;
+}
+
+.toggle__label {
+  position: relative;
+  display: block;
+  width: modular-scale(6);
+  height: modular-scale(3);
+  background-color: $black;
+  border-radius: 30px;
+  font-size: 0;
+  transition: background-color $ease-duration;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: modular-scale(-3);
+    display: block;
+    width: modular-scale(2);
+    height: modular-scale(2);
+    margin-top: -(modular-scale(2) / 2);
+    border-radius: 50%;
+    background-color: $white;
+  }
+}
+
+.toggle__checkbox:checked + .toggle__label {
+  background-color: $white;
+}
+
+.toggle__checkbox:checked + .toggle__label:after {
+  left: auto;
+  right: modular-scale(-3);
+  background-color: $black;
+}
+
+/*------------------------------------*\
   #MESSAGE
 \*------------------------------------*/
 
@@ -124,6 +181,6 @@ img {
   text-transform: uppercase;
 }
 
-.message__emphasis {
-  color: $white;
-}
+  .message__emphasis {
+    color: $white;
+  }
