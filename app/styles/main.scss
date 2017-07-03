@@ -113,6 +113,7 @@ img {
   top: 0;
   left: 0;
   width: 100%;
+  padding: modular-scale(2);
 }
 
 /*------------------------------------*\
@@ -148,6 +149,7 @@ img {
   display: block;
   width: $toggle-width;
   height: $toggle-height;
+  margin-left: auto;
   background-color: $black;
   border-radius: $toggle-radius;
   font-size: 0;
