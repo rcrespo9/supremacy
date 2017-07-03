@@ -34,11 +34,11 @@ $white: #fff;
 $black: #000;
 
 // toggle
-$toggle-width: modular-scale(6);
+$toggle-width: modular-scale(5);
 $toggle-height: modular-scale(3);
 $toggle-radius: rem(30px);
 
-$toggle-handle-pos: modular-scale(-3);
+$toggle-handle-pos: modular-scale(-4);
 $toggle-handle-w-h: modular-scale(2);
 
 // animations
@@ -164,18 +164,18 @@ img {
     margin-top: -($toggle-handle-w-h / 2);
     border-radius: 50%;
     background-color: $white;
-    transform: translateX(0);
+    transform: translateX($toggle-handle-pos);
     transition: transform $ease-duration;
   }
 }
 
 .toggle__checkbox:checked + .toggle__label {
-  background-color: red;
+  background-color: $white;
 }
 
 .toggle__checkbox:checked + .toggle__label:after {
   background-color: $black;
-  transform: translateX($toggle-width);
+  transform: translateX($toggle-width - $toggle-handle-w-h - $toggle-handle-pos);
 }
 
 /*------------------------------------*\
