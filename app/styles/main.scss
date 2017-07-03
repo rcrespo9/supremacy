@@ -33,6 +33,14 @@ $white: #fff;
 
 $black: #000;
 
+// toggle
+$toggle-width: modular-scale(6);
+$toggle-height: modular-scale(3);
+$toggle-radius: rem(30px);
+
+$toggle-handle-pos: modular-scale(-3);
+$toggle-handle-w-h: modular-scale(2);
+
 // animations
 $ease-duration: .3s ease-in-out;
 
@@ -138,10 +146,10 @@ img {
 .toggle__label {
   position: relative;
   display: block;
-  width: modular-scale(6);
-  height: modular-scale(3);
+  width: $toggle-width;
+  height: $toggle-height;
   background-color: $black;
-  border-radius: 30px;
+  border-radius: $toggle-radius;
   font-size: 0;
   transition: background-color $ease-duration;
 
@@ -149,14 +157,15 @@ img {
     content: "";
     position: absolute;
     top: 50%;
-    left: modular-scale(-3);
+    left: 0;
     display: block;
-    width: modular-scale(2);
-    height: modular-scale(2);
-    margin-top: -(modular-scale(2) / 2);
+    width: $toggle-handle-w-h;
+    height: $toggle-handle-w-h;
+    margin-top: -($toggle-handle-w-h / 2);
     border-radius: 50%;
     background-color: $white;
-    transition: left $ease-duration;
+    transform: translateX(0);
+    transition: transform $ease-duration;
   }
 }
 
@@ -165,8 +174,8 @@ img {
 }
 
 .toggle__checkbox:checked + .toggle__label:after {
-  left: modular-scale(6) - rem(30px) - modular-scale(-3);
   background-color: $black;
+  transform: translateX($toggle-width);
 }
 
 /*------------------------------------*\
