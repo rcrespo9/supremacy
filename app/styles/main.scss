@@ -169,6 +169,10 @@ img {
     transform: translateX($toggle-handle-pos);
     transition: transform $ease-duration;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .toggle__checkbox:checked + .toggle__label {
