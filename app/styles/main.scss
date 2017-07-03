@@ -84,6 +84,9 @@ html {
 }
 
 body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   background-color: $white;
   color: $black;
   font-family: 'futura-pt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -109,14 +112,20 @@ img {
 }
 
 /*------------------------------------*\
+  #THEMES
+\*------------------------------------*/
+
+.dark {
+  background-color: $black;
+  color: $white;
+}
+
+/*------------------------------------*\
   #PAGE HEADER
 \*------------------------------------*/
 
 .page-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  flex: none;
   padding: modular-scale(2);
 }
 
@@ -126,19 +135,10 @@ img {
 
 .page-content {
   display: flex;
-  height: 100vh;
+  flex: 1;
   justify-content: center;
   align-items: center;
   padding: 0 modular-scale(4);
-}
-
-/*------------------------------------*\
-  #THEMES
-\*------------------------------------*/
-
-.dark {
-  background-color: $black;
-  color: $white;
 }
 
 /*------------------------------------*\
@@ -197,6 +197,7 @@ img {
   margin: 0;
   font-size: modular-scale(8, 1vmin);
   font-weight: 800;
+  font-style: italic;
   text-align: center;
   text-transform: uppercase;
   line-height: strip-units(modular-scale(0));
@@ -205,3 +206,47 @@ img {
   .message__emphasis {
     color: $white;
   }
+
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
+
+.page-footer {
+  padding: modular-scale(1) modular-scale(2);
+  text-align: center;
+}
+
+  .footer__credit {
+    margin: 0;
+    font-size: modular-scale(1);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+    .footer__credit a {
+      position: relative;
+      color: inherit;
+      font-weight: 600;
+      text-decoration: none;
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -(modular-scale(-7));
+        left: 0;
+        display: block;
+        width: 0;
+        height: 2px;
+        background-color: $black;
+        transition: width $ease-duration;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+    }
+
+    .dark .footer__credit a:after {
+      background-color: $white;
+    }
