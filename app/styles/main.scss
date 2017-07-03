@@ -45,27 +45,6 @@ $toggle-handle-w-h: modular-scale(2);
 $ease-duration: .3s ease-in-out;
 
 /*------------------------------------*\
-  #MIXINS
-\*------------------------------------*/
-
-@mixin row() {
-  display: flex;
-  flex-flow: row wrap;
-  margin: -1em 0 1em -1em;
-}
-
-@mixin column($width, $fit: false) {
-  flex: 0 0 $width;
-  padding: 1rem 0 0 1rem;
-
-  @if $fit {
-    flex: 1;
-  } else {
-    flex: 0 0 $width;
-  }
-}
-
-/*------------------------------------*\
   #BASE STYLES
 \*------------------------------------*/
 
@@ -247,6 +226,6 @@ img {
       }
     }
 
-    .dark .footer__credit a:after {
-      background-color: $white;
-    }
+      .dark .footer__credit a:after {
+        background-color: $white;
+      }
