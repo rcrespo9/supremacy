@@ -179,7 +179,7 @@ img {
   font-style: italic;
   text-align: center;
   text-transform: uppercase;
-  line-height: strip-units(modular-scale(0));
+  line-height: strip-unit(modular-scale(0));
 }
 
   .message__emphasis {
