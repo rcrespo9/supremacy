@@ -1,0 +1,252 @@
+// bower:scss
+@import "bower_components/bourbon/app/assets/stylesheets/_bourbon.scss";
+// endbower
+
+/*------------------------------------*\
+  #FUNCTIONS
+\*------------------------------------*/
+
+@function rem($pixels, $context: $baseFontSize) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+
+  @if (unitless($context)) {
+    $context: $context * 1px;
+  }
+
+  @return $pixels / $context * 1rem;
+}
+
+
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+
+// typography
+$baseFontSize: 16;
+
+$modular-scale-base: rem($em-base);
+
+// colors
+$white: #fff;
+
+$black: #000;
+
+// toggle
+$toggle-width: modular-scale(5);
+$toggle-height: modular-scale(3);
+$toggle-radius: rem(30px);
+
+$toggle-handle-pos: modular-scale(-4);
+$toggle-handle-w-h: modular-scale(2);
+
+// animations
+$ease-duration: .3s ease-in-out;
+
+/*------------------------------------*\
+  #BASE STYLES
+\*------------------------------------*/
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: .8rem;
+
+  @media(min-width: 40em) {
+    font-size: 1rem;
+  }
+
+  @media(min-width: 100em) {
+    font-size: 1vw;
+  }
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: $white;
+  color: $black;
+  font-family: 'futura-pt', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: all $ease-duration;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+svg,
+img {
+  width: 100%;
+  height: auto;
+}
+
+/*------------------------------------*\
+  #FALLBACKS
+\*------------------------------------*/
+
+.no-flexboxlegacy,
+.no-flexboxlegacy > body {
+  height: 100%;
+}
+
+/*------------------------------------*\
+  #THEMES
+\*------------------------------------*/
+
+.dark {
+  background-color: $black;
+  color: $white;
+}
+
+/*------------------------------------*\
+  #PAGE HEADER
+\*------------------------------------*/
+
+.page-header {
+  flex: none;
+  padding: modular-scale(2);
+}
+
+/*------------------------------------*\
+  #PAGE CONTENT
+\*------------------------------------*/
+
+.page-content {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0 modular-scale(4);
+}
+
+/*------------------------------------*\
+  #TOGGLE
+\*------------------------------------*/
+
+.toggle__checkbox {
+  display: none;
+}
+
+.toggle__label {
+  position: relative;
+  display: block;
+  width: $toggle-width;
+  height: $toggle-height;
+  margin-left: auto;
+  background-color: $black;
+  border-radius: $toggle-radius;
+  font-size: 0;
+  transition: background-color $ease-duration;
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: $toggle-handle-w-h;
+    height: $toggle-handle-w-h;
+    margin-top: -($toggle-handle-w-h / 2);
+    border-radius: 50%;
+    background-color: $white;
+    transform: translateX($toggle-handle-pos);
+    transition: transform $ease-duration;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.toggle__checkbox:checked + .toggle__label {
+  background-color: $white;
+}
+
+.toggle__checkbox:checked + .toggle__label:after {
+  background-color: $black;
+  transform: translateX($toggle-width - $toggle-handle-w-h - $toggle-handle-pos);
+}
+
+/*------------------------------------*\
+  #MESSAGE
+\*------------------------------------*/
+
+.message {
+  margin: 0;
+  font-size: modular-scale(8, 1vmin);
+  font-weight: 800;
+  font-style: italic;
+  text-align: center;
+  text-transform: uppercase;
+  line-height: strip-unit(modular-scale(0));
+}
+
+  .message__word--emphasis {
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+    color: $white;
+  }
+
+  .dark .message__word--emphasis {
+    background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.4' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+/*------------------------------------*\
+  #FOOTER
+\*------------------------------------*/
+
+.page-footer {
+  padding: modular-scale(1) modular-scale(2);
+  text-align: center;
+}
+
+  .footer__credit {
+    margin: 0;
+    font-size: modular-scale(1);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+    .footer__credit a {
+      position: relative;
+      color: inherit;
+      font-weight: 600;
+      text-decoration: none;
+
+      &:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -(modular-scale(-5));
+        left: 0;
+        display: block;
+        width: 0;
+        height: 2px;
+        background-color: $black;
+        transition: width $ease-duration;
+      }
+
+      &:hover:after {
+        width: 100%;
+      }
+    }
+
+      .dark .footer__credit a:after {
+        background-color: $white;
+      }
